@@ -22,11 +22,28 @@ namespace WpfApp16
             InitializeComponent();
             Auth auth = new Auth();
             auth.Auth1();
-
             cmbList.ItemsSource = auth.otvet;
             
+            btnTest.Click += BtnTest_Click;
 
                
+        }
+
+        private void BtnTest_Click(object sender, RoutedEventArgs e)
+        {
+            if (cmbList.SelectedIndex <0)
+            {
+                MessageBox.Show("выберите группу");
+            }
+            else
+            {
+                Auth auth = new Auth();
+                auth.auth3(cmbList.SelectedItem as string);
+                foreach (var s in auth.Student)
+                {
+                    textB.Text += s.name + "\n";
+                }
+            }
         }
     }
 }

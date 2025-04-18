@@ -10,6 +10,9 @@
         <StackPanel>
             <Label>Выберите группу </Label>
             <ComboBox Name="cmbList"  Height="20"></ComboBox>
+            <Label>Список студентов</Label>
+            <TextBlock  Height="100" x:Name="textB">выбери группу</TextBlock>
+            <Button Height="20" Margin="0,0,300,0" Name="btnTest">список</Button>
         </StackPanel>
     </Grid>
 </Window>

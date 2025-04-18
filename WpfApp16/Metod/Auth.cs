@@ -14,6 +14,8 @@ namespace ConsoleApp32
         public string[] otvet { get; set; }
         private string Token {  get; set; }
 
+        public Person[] Student { get; set; }
+
         public void Auth1() 
         {
             var client = new HttpClient();
@@ -56,6 +58,26 @@ namespace ConsoleApp32
             otvet = a;
         
         }
+        public void auth3(string gr)
+        {
+            Auth1();
+            var client = new HttpClient();
+            var request = new HttpRequestMessage(HttpMethod.Get, $"http://192.168.59.39:12345/api/Student?gr={gr}&token={Token}");
+           
+    
+            var response = client.SendAsync(request).Result;
+            response.EnsureSuccessStatusCode();
+            
+            var a = JsonConvert.DeserializeObject<List<Person>>(response.Content.ReadAsStringAsync().Result);
+            Student = a.ToArray();
 
+
+        }
+        
+    }
+    public class Person
+    {
+        public string name;
+        public string groups;
     }
 }
